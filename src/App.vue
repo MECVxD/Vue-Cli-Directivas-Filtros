@@ -1,28 +1,64 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <div class="jumbotron">
+      <span>
+        {{mensaje|suspensivos|mayusculas}}
+      </span>
+      <hr>
+       <span>
+        {{ temperatura | aFahrenheit }}
+      </span>
+      <!--<span v-decorar.negrilla.italico="{familia: 'helvetica', color: 'red'}">Aprende Vue.js Fácilmetne</span>
+      <hr>
+      <span v-decorar-local:grande.negrilla.italico="{familia: 'helvetica', color: 'red'}">Aprende Vue.js Fácilmetne</span>
+      /-->
+    </div>
   </div>
+    
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+/*export default {
+    directives:{
+        'decorar-local':{
+              bind(el, binding){
+            el.style.fontFamily=binding.value.familia
+            el.style.color=binding.value.color
+            if(binding.arg == 'grande'){
+              el.style.fontSize='50px'
+            }
+            if(binding.arg == 'pequeno'){
+              el.style.fontSize='10px'
+            }
+            if(binding.modifiers['negrilla']){
+              el.style.fontWeight='bold'
+            }
+            if(binding.modifiers['italico']){
+              el.style.fontStyle='italic'
+            } 
+        
+          }
+    },
+  }
+}*/
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    data(){
+      return {
+        mensaje: 'Aprende vue.js fácilmente',
+        temperatura: 20
+      }
+    },
+    filters:{
+      mayusculas( mensaje ){
+        return mensaje.toUpperCase()
+      },
+      aFahrenheit(temperatura){
+        return (9/5* temperatura)+32+'F'
+      }
+    }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
